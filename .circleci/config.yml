@@ -1,10 +1,10 @@
-#timestamp Thu Sep 17 15:50:14 EEST 2020
+#timestamp Fri Sep 18 17:58:24 EEST 2020
 version: 2.1
 
 executors:
  fmi-executor:
   docker:
-   - image: fmidev/smartmet-cibase:latest
+   - image: fmidev/smartmet-cibase-8:latest
 
 commands:
  build-default:

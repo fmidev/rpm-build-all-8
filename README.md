@@ -1,6 +1,6 @@
-# smartmet-rpm-build-all
+# smartmet-rpm-build-all-8
 
-Build and test all RPM packages in correct dependency order and form yum repository
+Build and test all RPM packages in correct dependency order and form yum repository. This is a temporary repo to get things working for CentOS 8, and will be deleted once the configuration can be merged with the CentOS 7 version.
 
 ## Purpose of this module
 
