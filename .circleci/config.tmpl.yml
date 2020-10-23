@@ -1,5 +1,5 @@
 #timestamp This will be replaced with a date and time this file was regenerated
-version: 2.1
+version: 2.0
 
 executors:
  fmi-executor:

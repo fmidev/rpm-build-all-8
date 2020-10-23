@@ -1,5 +1,5 @@
-#timestamp Wed Oct 21 14:18:47 EEST 2020
-version: 2.1
+#timestamp Fri Oct 23 11:58:22 EEST 2020
+version: 2.0
 
 executors:
  fmi-executor:
