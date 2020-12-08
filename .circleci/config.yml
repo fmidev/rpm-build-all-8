@@ -1,5 +1,6 @@
-#timestamp Tue Dec  8 15:43:31 EET 2020
+#timestamp Tue Dec  8 15:59:40 EET 2020
 version: 2.1
+pipelines: true
 
 executors:
  fmi-executor:
