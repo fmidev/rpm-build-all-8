@@ -1,4 +1,4 @@
-#timestamp Tue Dec  8 15:59:40 EET 2020
+#timestamp Wed Dec  9 12:29:15 UTC 2020
 version: 2.1
 pipelines: true
 
@@ -1091,7 +1091,6 @@ workflows:
         - test-smartmet-library-calculator
         - test-smartmet-library-locus
         - test-smartmet-library-macgyver
-        - test-smartmet-library-newbase
         - test-smartmet-library-spine
         - test-smartmet-library-textgen
         - test-smartmet-server
