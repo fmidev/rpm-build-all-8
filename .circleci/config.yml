@@ -1,4 +1,4 @@
-#timestamp Wed Dec 30 11:24:54 EET 2020
+#timestamp Wed Dec 30 11:33:17 EET 2020
 version: 2.1
 pipelines: true
 
@@ -973,7 +973,6 @@ workflows:
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-regression
-        - test-smartmet-library-spine
         - test-smartmet-timezones
     - test-smartmet-library-textgen:
        requires:
