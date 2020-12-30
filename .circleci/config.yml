@@ -1,4 +1,4 @@
-#timestamp Wed Dec 30 15:24:40 EET 2020
+#timestamp Wed Dec 30 18:02:33 EET 2020
 version: 2.1
 pipelines: true
 
@@ -261,11 +261,6 @@ jobs:
     steps:
      - build-default:
         module: smartmet-plugin-meta
-  build-smartmet-plugin-test:
-    executor: fmi-executor
-    steps:
-     - build-default:
-        module: smartmet-plugin-test
   build-smartmet-plugin-textgen:
     executor: fmi-executor
     steps:
@@ -448,10 +443,6 @@ jobs:
     steps:
      - test-default
   test-smartmet-plugin-meta:
-    executor: fmi-executor
-    steps:
-     - test-default
-  test-smartmet-plugin-test:
     executor: fmi-executor
     steps:
      - test-default
@@ -763,9 +754,6 @@ workflows:
         - test-smartmet-engine-querydata
         - test-smartmet-library-macgyver
         - test-smartmet-library-spine
-    - build-smartmet-plugin-test:
-       requires:
-        - preprep
     - build-smartmet-plugin-textgen:
        requires:
         - preprep
@@ -985,7 +973,6 @@ workflows:
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-regression
-        - test-smartmet-plugin-test
         - test-smartmet-timezones
     - test-smartmet-library-textgen:
        requires:
@@ -1080,9 +1067,6 @@ workflows:
         - test-smartmet-library-spine
         - test-smartmet-server
         - test-smartmet-test-db
-    - test-smartmet-plugin-test:
-       requires:
-        - build-smartmet-plugin-test
     - test-smartmet-plugin-textgen:
        requires:
         - build-smartmet-plugin-textgen
@@ -1214,7 +1198,6 @@ workflows:
         - build-smartmet-plugin-grid-admin
         - build-smartmet-plugin-grid-gui
         - build-smartmet-plugin-meta
-        - build-smartmet-plugin-test
         - build-smartmet-plugin-textgen
         - build-smartmet-plugin-timeseries
         - build-smartmet-plugin-wfs
@@ -1258,7 +1241,6 @@ workflows:
         - test-smartmet-plugin-grid-admin
         - test-smartmet-plugin-grid-gui
         - test-smartmet-plugin-meta
-        - test-smartmet-plugin-test
         - test-smartmet-plugin-textgen
         - test-smartmet-plugin-timeseries
         - test-smartmet-plugin-wfs
