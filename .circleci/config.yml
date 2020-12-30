@@ -1,4 +1,4 @@
-#timestamp Wed Dec 30 04:11:40 UTC 2020
+#timestamp Wed Dec 30 07:24:02 EET 2020
 version: 2.1
 pipelines: true
 
@@ -549,7 +549,7 @@ workflows:
   scheduled:
    triggers:
     - schedule:
-       cron: "10 4 * * *"
+       cron: "10 3 * * *"
        filters:
         branches:
          only:
