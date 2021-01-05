@@ -1,4 +1,4 @@
-#timestamp Tue Jan  5 05:11:35 EET 2021
+#timestamp Tue Jan  5 16:52:16 EET 2021
 version: 2.1
 pipelines: true
 
@@ -759,7 +759,6 @@ workflows:
         - preprep
         - test-smartmet-engine-geonames
         - test-smartmet-engine-gis
-        - test-smartmet-engine-observation
         - test-smartmet-engine-querydata
         - test-smartmet-library-calculator
         - test-smartmet-library-locus
@@ -1072,7 +1071,6 @@ workflows:
         - build-smartmet-plugin-textgen
         - test-smartmet-engine-geonames
         - test-smartmet-engine-gis
-        - test-smartmet-engine-observation
         - test-smartmet-engine-querydata
         - test-smartmet-library-calculator
         - test-smartmet-library-locus
