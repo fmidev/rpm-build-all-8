@@ -1,4 +1,4 @@
-#timestamp Wed Jan 20 05:11:39 EET 2021
+#timestamp Thu Jan 21 05:11:30 EET 2021
 version: 2.1
 pipelines: true
 
@@ -668,6 +668,7 @@ workflows:
     - build-smartmet-library-smarttools:
        requires:
         - preprep
+        - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
     - build-smartmet-library-spine:
        requires:
