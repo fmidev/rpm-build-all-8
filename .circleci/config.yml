@@ -1,4 +1,4 @@
-#timestamp Mon Jan 25 05:12:19 EET 2021
+#timestamp Tue Jan 26 05:11:30 EET 2021
 version: 2.1
 pipelines: true
 
@@ -649,6 +649,7 @@ workflows:
     - build-smartmet-library-imagine2:
        requires:
         - preprep
+        - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
     - build-smartmet-library-locus:
        requires:
@@ -876,6 +877,7 @@ workflows:
         - test-smartmet-library-gis
         - test-smartmet-library-regression
         - test-smartmet-library-spine
+        - test-smartmet-test-db
     - test-smartmet-engine-grid:
        requires:
         - build-smartmet-engine-grid
@@ -941,6 +943,7 @@ workflows:
     - test-smartmet-library-imagine2:
        requires:
         - build-smartmet-library-imagine2
+        - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-regression
     - test-smartmet-library-locus:
