@@ -1,4 +1,4 @@
-#timestamp Thu Mar  4 05:11:39 EET 2021
+#timestamp Fri Mar  5 05:11:30 EET 2021
 version: 2.1
 pipelines: true
 
@@ -721,6 +721,7 @@ workflows:
         - preprep
         - test-smartmet-engine-contour
         - test-smartmet-engine-geonames
+        - test-smartmet-engine-grid
         - test-smartmet-engine-querydata
         - test-smartmet-library-macgyver
         - test-smartmet-library-spine
@@ -728,7 +729,10 @@ workflows:
        requires:
         - preprep
         - test-smartmet-engine-geonames
+        - test-smartmet-engine-grid
         - test-smartmet-engine-querydata
+        - test-smartmet-library-grid-content
+        - test-smartmet-library-grid-files
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-spine
@@ -805,10 +809,13 @@ workflows:
         - test-smartmet-engine-contour
         - test-smartmet-engine-geonames
         - test-smartmet-engine-gis
+        - test-smartmet-engine-grid
         - test-smartmet-engine-observation
         - test-smartmet-engine-querydata
         - test-smartmet-library-gis
         - test-smartmet-library-giza
+        - test-smartmet-library-grid-content
+        - test-smartmet-library-grid-files
         - test-smartmet-library-macgyver
         - test-smartmet-library-spine
     - build-smartmet-qdcontour:
@@ -1037,6 +1044,7 @@ workflows:
         - build-smartmet-plugin-cross_section
         - test-smartmet-engine-contour
         - test-smartmet-engine-geonames
+        - test-smartmet-engine-grid
         - test-smartmet-engine-querydata
         - test-smartmet-library-macgyver
         - test-smartmet-library-spine
@@ -1134,10 +1142,13 @@ workflows:
         - test-smartmet-engine-contour
         - test-smartmet-engine-geonames
         - test-smartmet-engine-gis
+        - test-smartmet-engine-grid
         - test-smartmet-engine-observation
         - test-smartmet-engine-querydata
         - test-smartmet-library-gis
         - test-smartmet-library-giza
+        - test-smartmet-library-grid-content
+        - test-smartmet-library-grid-files
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-spine
