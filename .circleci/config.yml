@@ -1,4 +1,4 @@
-#timestamp Mon Mar  8 16:29:15 EET 2021
+#timestamp Tue Mar  9 05:11:31 EET 2021
 version: 2.1
 pipelines: true
 
@@ -723,6 +723,8 @@ workflows:
         - test-smartmet-engine-geonames
         - test-smartmet-engine-grid
         - test-smartmet-engine-querydata
+        - test-smartmet-library-grid-content
+        - test-smartmet-library-grid-files
         - test-smartmet-library-macgyver
         - test-smartmet-library-spine
     - build-smartmet-plugin-download:
@@ -1060,6 +1062,7 @@ workflows:
        requires:
         - build-smartmet-plugin-download
         - test-smartmet-engine-geonames
+        - test-smartmet-engine-grid
         - test-smartmet-engine-querydata
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
