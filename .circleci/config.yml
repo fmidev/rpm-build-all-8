@@ -1,4 +1,4 @@
-#timestamp Thu Mar 11 05:11:39 EET 2021
+#timestamp Fri Mar 12 05:11:26 EET 2021
 version: 2.1
 pipelines: true
 
@@ -698,6 +698,7 @@ workflows:
         - preprep
         - test-smartmet-engine-contour
         - test-smartmet-engine-geonames
+        - test-smartmet-engine-grid
         - test-smartmet-engine-observation
         - test-smartmet-engine-querydata
         - test-smartmet-engine-sputnik
@@ -1026,6 +1027,7 @@ workflows:
        requires:
         - build-smartmet-plugin-admin
         - test-smartmet-engine-geonames
+        - test-smartmet-engine-grid
         - test-smartmet-engine-querydata
         - test-smartmet-engine-sputnik
         - test-smartmet-library-macgyver
