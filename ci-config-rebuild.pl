@@ -141,6 +141,8 @@ scan("smartmet-shapetools", "master", "smartmet-shapetools");
 # print STDERR Dumper(\%::testdeps );
 # print STDERR Dumper(\%::builddeps );
 
+my $allmodules = join(" ", keys \%::builddeps);
+
 my $currenttemplate        = "";
 my $currenttemplatename    = "";
 my $currenttemplatestartln = 0;    # Save start line number for use in error prints
@@ -349,5 +351,6 @@ while (<STDIN>)
 	next;
     }
     
+    $ln =~ s/<MODULES>/$allmodules/;
     print $ln;
 }
