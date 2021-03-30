@@ -16,7 +16,7 @@ commands:
   steps:
    - run:
       name: Disable smartmet packages coming from FMI repo
-      command: sudo dnf config-manager --quiet --setopt="smartmet-open.exclude=<MODULES>" --save
+      command: sudo dnf config-manager --quiet --save --setopt="smartmet-open.exclude=<MODULES>"
    - checkout
    - attach_workspace:
       at: /dist
