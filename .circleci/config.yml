@@ -1,4 +1,4 @@
-#timestamp Tue Mar 30 06:11:25 EEST 2021
+#timestamp Tue Mar 30 14:39:36 EEST 2021
 version: 2.1
 pipelines: true
 
@@ -101,6 +101,11 @@ jobs:
 # post: starts a block for jobs which should be run after everything else(i.e. collect artifacts, setup repository)
 # If you need multiple pre/post processing jobs(unlikely, you could just put in more steps), make several templates
 #template build
+  build-smartmet-SFCGAL-libs:
+    executor: fmi-executor
+    steps:
+     - build-default:
+        module: smartmet-SFCGAL-libs
   build-smartmet-engine-authentication:
     executor: fmi-executor
     steps:
@@ -311,11 +316,6 @@ jobs:
     steps:
      - build-default:
         module: smartmet-test-db
-  build-smartmet-test-grid:
-    executor: fmi-executor
-    steps:
-     - build-default:
-        module: smartmet-test-grid
   build-smartmet-timezones:
     executor: fmi-executor
     steps:
@@ -323,6 +323,10 @@ jobs:
         module: smartmet-timezones
 #end
 #template test
+  test-smartmet-SFCGAL-libs:
+    executor: fmi-executor
+    steps:
+     - test-default
   test-smartmet-engine-authentication:
     executor: fmi-executor
     steps:
@@ -491,10 +495,6 @@ jobs:
     executor: fmi-executor
     steps:
      - test-default
-  test-smartmet-test-grid:
-    executor: fmi-executor
-    steps:
-     - test-default
   test-smartmet-timezones:
     executor: fmi-executor
     steps:
@@ -574,6 +574,9 @@ workflows:
 # Template still needed for indentation lookup and placement
 #template deptree
     - preprep
+    - build-smartmet-SFCGAL-libs:
+       requires:
+        - preprep
     - build-smartmet-engine-authentication:
        requires:
         - preprep
@@ -632,6 +635,7 @@ workflows:
     - build-smartmet-library-gis:
        requires:
         - preprep
+        - test-smartmet-SFCGAL-libs
         - test-smartmet-library-macgyver
     - build-smartmet-library-giza:
        requires:
@@ -877,12 +881,12 @@ workflows:
     - build-smartmet-test-db:
        requires:
         - preprep
-    - build-smartmet-test-grid:
-       requires:
-        - preprep
     - build-smartmet-timezones:
        requires:
         - preprep
+    - test-smartmet-SFCGAL-libs:
+       requires:
+        - build-smartmet-SFCGAL-libs
     - test-smartmet-engine-authentication:
        requires:
         - build-smartmet-engine-authentication
@@ -1163,7 +1167,6 @@ workflows:
         - test-smartmet-library-spine
         - test-smartmet-server
         - test-smartmet-test-db
-        - test-smartmet-test-grid
     - test-smartmet-plugin-wms:
        requires:
         - build-smartmet-plugin-wms
@@ -1220,14 +1223,12 @@ workflows:
     - test-smartmet-test-db:
        requires:
         - build-smartmet-test-db
-    - test-smartmet-test-grid:
-       requires:
-        - build-smartmet-test-grid
     - test-smartmet-timezones:
        requires:
         - build-smartmet-timezones
     - archive:
        requires:
+        - build-smartmet-SFCGAL-libs
         - build-smartmet-engine-authentication
         - build-smartmet-engine-contour
         - build-smartmet-engine-geonames
@@ -1270,8 +1271,8 @@ workflows:
         - build-smartmet-server
         - build-smartmet-shapetools
         - build-smartmet-test-db
-        - build-smartmet-test-grid
         - build-smartmet-timezones
+        - test-smartmet-SFCGAL-libs
         - test-smartmet-engine-authentication
         - test-smartmet-engine-contour
         - test-smartmet-engine-geonames
@@ -1314,6 +1315,5 @@ workflows:
         - test-smartmet-server
         - test-smartmet-shapetools
         - test-smartmet-test-db
-        - test-smartmet-test-grid
         - test-smartmet-timezones
 #end
