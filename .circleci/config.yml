@@ -1,4 +1,4 @@
-#timestamp Thu Apr 15 17:06:54 EEST 2021
+#timestamp Thu Apr 15 20:06:42 EEST 2021
 version: 2.1
 pipelines: true
 
@@ -635,6 +635,7 @@ workflows:
     - build-smartmet-frontier:
        requires:
         - preprep
+        - test-smartmet-library-gis
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-tron
@@ -1064,6 +1065,7 @@ workflows:
        requires:
         - build-smartmet-library-woml
         - test-smartmet-library-macgyver
+        - test-smartmet-library-regression
     - test-smartmet-plugin-admin:
        requires:
         - build-smartmet-plugin-admin
