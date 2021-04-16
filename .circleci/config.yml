@@ -1,4 +1,4 @@
-#timestamp Fri Apr 16 06:11:32 EEST 2021
+#timestamp Fri Apr 16 06:54:06 EEST 2021
 version: 2.1
 pipelines: true
 
@@ -916,6 +916,7 @@ workflows:
         - test-smartmet-library-newbase
         - test-smartmet-library-regression
         - test-smartmet-library-spine
+        - test-smartmet-library-tron
     - test-smartmet-engine-geonames:
        requires:
         - build-smartmet-engine-geonames
