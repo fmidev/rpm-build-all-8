@@ -1,4 +1,4 @@
-#timestamp Tue Oct 12 06:11:25 EEST 2021
+#timestamp Tue Oct 12 17:41:07 EEST 2021
 version: 2.1
 pipelines: true
 
@@ -16,7 +16,7 @@ commands:
   steps:
    - run:
       name: Disable smartmet packages coming from FMI repo
-      command: sudo dnf config-manager --quiet --save --setopt="smartmet-open.exclude=smartmet-engine-authentication smartmet-engine-contour smartmet-engine-geonames smartmet-engine-gis smartmet-engine-grid smartmet-engine-observation smartmet-engine-querydata smartmet-engine-sputnik smartmet-frontier smartmet-library-calculator smartmet-library-gis smartmet-library-giza smartmet-library-grid-content smartmet-library-grid-files smartmet-library-imagine smartmet-library-imagine2 smartmet-library-locus smartmet-library-macgyver smartmet-library-newbase smartmet-library-regression smartmet-library-smarttools smartmet-library-spine smartmet-library-textgen smartmet-library-tron smartmet-library-woml smartmet-plugin-admin smartmet-plugin-autocomplete smartmet-plugin-backend smartmet-plugin-cross_section smartmet-plugin-download smartmet-plugin-frontend smartmet-plugin-grid-admin smartmet-plugin-grid-gui smartmet-plugin-meta smartmet-plugin-textgen smartmet-plugin-timeseries smartmet-plugin-wfs smartmet-plugin-wms smartmet-qdcontour smartmet-qdcontour2 smartmet-qdtools smartmet-server smartmet-shapetools smartmet-test-db smartmet-timezones smartmet-tools-grid smartmet-utils"
+      command: sudo dnf config-manager --quiet --save --setopt="smartmet-open.exclude=smartmet-engine-authentication smartmet-engine-contour smartmet-engine-geonames smartmet-engine-gis smartmet-engine-grid smartmet-engine-observation smartmet-engine-querydata smartmet-engine-sputnik smartmet-frontier smartmet-library-calculator smartmet-library-gis smartmet-library-giza smartmet-library-grid-content smartmet-library-grid-files smartmet-library-imagine smartmet-library-imagine2 smartmet-library-locus smartmet-library-macgyver smartmet-library-newbase smartmet-library-regression smartmet-library-smarttools smartmet-library-spine smartmet-library-textgen smartmet-library-trajectory smartmet-library-tron smartmet-library-woml smartmet-plugin-admin smartmet-plugin-autocomplete smartmet-plugin-backend smartmet-plugin-cross_section smartmet-plugin-download smartmet-plugin-frontend smartmet-plugin-grid-admin smartmet-plugin-grid-gui smartmet-plugin-meta smartmet-plugin-textgen smartmet-plugin-timeseries smartmet-plugin-trajectory smartmet-plugin-wfs smartmet-plugin-wms smartmet-qdcontour smartmet-qdcontour2 smartmet-qdtools smartmet-server smartmet-shapetools smartmet-test-db smartmet-timezones smartmet-tools-grid smartmet-trajectory-formats smartmet-utils"
    - checkout
    - attach_workspace:
       at: /dist
@@ -216,6 +216,11 @@ jobs:
     steps:
      - build-default:
         module: smartmet-library-textgen
+  build-smartmet-library-trajectory:
+    executor: fmi-executor
+    steps:
+     - build-default:
+        module: smartmet-library-trajectory
   build-smartmet-library-tron:
     executor: fmi-executor
     steps:
@@ -281,6 +286,11 @@ jobs:
     steps:
      - build-default:
         module: smartmet-plugin-timeseries
+  build-smartmet-plugin-trajectory:
+    executor: fmi-executor
+    steps:
+     - build-default:
+        module: smartmet-plugin-trajectory
   build-smartmet-plugin-wfs:
     executor: fmi-executor
     steps:
@@ -331,6 +341,11 @@ jobs:
     steps:
      - build-default:
         module: smartmet-tools-grid
+  build-smartmet-trajectory-formats:
+    executor: fmi-executor
+    steps:
+     - build-default:
+        module: smartmet-trajectory-formats
   build-smartmet-utils:
     executor: fmi-executor
     steps:
@@ -406,6 +421,10 @@ jobs:
     executor: fmi-executor
     steps:
      - test-default
+  test-smartmet-library-trajectory:
+    executor: fmi-executor
+    steps:
+     - test-default
   test-smartmet-library-tron:
     executor: fmi-executor
     steps:
@@ -438,6 +457,10 @@ jobs:
     executor: fmi-executor
     steps:
      - test-default
+  test-smartmet-plugin-trajectory:
+    executor: fmi-executor
+    steps:
+     - test-default
   test-smartmet-plugin-wfs:
     executor: fmi-executor
     steps:
@@ -467,6 +490,10 @@ jobs:
     steps:
      - test-default
   test-smartmet-timezones:
+    executor: fmi-executor
+    steps:
+     - test-default
+  test-smartmet-trajectory-formats:
     executor: fmi-executor
     steps:
      - test-default
@@ -685,6 +712,9 @@ workflows:
         - test-smartmet-library-gis
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
+    - build-smartmet-library-trajectory:
+       requires:
+        - preprep
     - build-smartmet-library-tron:
        requires:
         - preprep
@@ -796,6 +826,15 @@ workflows:
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-spine
+    - build-smartmet-plugin-trajectory:
+       requires:
+        - preprep
+        - test-smartmet-engine-geonames
+        - build-smartmet-engine-querydata
+        - test-smartmet-library-macgyver
+        - build-smartmet-library-smarttools
+        - test-smartmet-library-spine
+        - test-smartmet-library-trajectory
     - build-smartmet-plugin-wfs:
        requires:
         - preprep
@@ -877,6 +916,9 @@ workflows:
         - build-smartmet-library-grid-content
         - build-smartmet-library-grid-files
         - test-smartmet-library-spine
+    - build-smartmet-trajectory-formats:
+       requires:
+        - preprep
     - build-smartmet-utils:
        requires:
         - preprep
@@ -999,6 +1041,9 @@ workflows:
         - test-smartmet-library-newbase
         - test-smartmet-library-regression
         - test-smartmet-timezones
+    - test-smartmet-library-trajectory:
+       requires:
+        - build-smartmet-library-trajectory
     - test-smartmet-library-tron:
        requires:
         - build-smartmet-library-tron
@@ -1077,6 +1122,15 @@ workflows:
         - test-smartmet-server
         - test-smartmet-test-db
         - test-smartmet-utils
+    - test-smartmet-plugin-trajectory:
+       requires:
+        - build-smartmet-plugin-trajectory
+        - test-smartmet-engine-geonames
+        - test-smartmet-library-macgyver
+        - test-smartmet-library-spine
+        - test-smartmet-library-trajectory
+        - test-smartmet-server
+        - test-smartmet-trajectory-formats
     - test-smartmet-plugin-wfs:
        requires:
         - build-smartmet-plugin-wfs
@@ -1141,6 +1195,9 @@ workflows:
     - test-smartmet-timezones:
        requires:
         - build-smartmet-timezones
+    - test-smartmet-trajectory-formats:
+       requires:
+        - build-smartmet-trajectory-formats
     - test-smartmet-utils:
        requires:
         - build-smartmet-utils
@@ -1169,6 +1226,7 @@ workflows:
         - build-smartmet-library-smarttools
         - build-smartmet-library-spine
         - build-smartmet-library-textgen
+        - build-smartmet-library-trajectory
         - build-smartmet-library-tron
         - build-smartmet-library-woml
         - build-smartmet-plugin-admin
@@ -1182,6 +1240,7 @@ workflows:
         - build-smartmet-plugin-meta
         - build-smartmet-plugin-textgen
         - build-smartmet-plugin-timeseries
+        - build-smartmet-plugin-trajectory
         - build-smartmet-plugin-wfs
         - build-smartmet-plugin-wms
         - build-smartmet-qdcontour
@@ -1192,6 +1251,7 @@ workflows:
         - build-smartmet-test-db
         - build-smartmet-timezones
         - build-smartmet-tools-grid
+        - build-smartmet-trajectory-formats
         - build-smartmet-utils
         - test-smartmet-engine-authentication
         - test-smartmet-engine-contour
@@ -1210,6 +1270,7 @@ workflows:
         - test-smartmet-library-regression
         - test-smartmet-library-spine
         - test-smartmet-library-textgen
+        - test-smartmet-library-trajectory
         - test-smartmet-library-tron
         - test-smartmet-library-woml
         - test-smartmet-plugin-autocomplete
@@ -1218,6 +1279,7 @@ workflows:
         - test-smartmet-plugin-meta
         - test-smartmet-plugin-textgen
         - test-smartmet-plugin-timeseries
+        - test-smartmet-plugin-trajectory
         - test-smartmet-plugin-wfs
         - test-smartmet-plugin-wms
         - test-smartmet-qdcontour
@@ -1226,5 +1288,6 @@ workflows:
         - test-smartmet-server
         - test-smartmet-test-db
         - test-smartmet-timezones
+        - test-smartmet-trajectory-formats
         - test-smartmet-utils
 #end
