@@ -1,4 +1,4 @@
-#timestamp Wed Oct 13 17:37:51 EEST 2021
+#timestamp Wed Oct 13 20:39:46 EEST 2021
 version: 2.1
 pipelines: true
 
@@ -706,6 +706,7 @@ workflows:
     - build-smartmet-library-trajectory:
        requires:
         - preprep
+        - test-smartmet-library-gis
         - test-smartmet-library-locus
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
@@ -1036,6 +1037,7 @@ workflows:
     - test-smartmet-library-trajectory:
        requires:
         - build-smartmet-library-trajectory
+        - test-smartmet-library-gis
         - test-smartmet-library-locus
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
