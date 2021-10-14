@@ -1,4 +1,4 @@
-#timestamp Thu Oct 14 06:12:15 EEST 2021
+#timestamp Thu Oct 14 11:17:22 EEST 2021
 version: 2.1
 pipelines: true
 
@@ -416,10 +416,6 @@ jobs:
     executor: fmi-executor
     steps:
      - test-default
-  test-smartmet-library-trajectory:
-    executor: fmi-executor
-    steps:
-     - test-default
   test-smartmet-library-tron:
     executor: fmi-executor
     steps:
@@ -830,7 +826,7 @@ workflows:
         - test-smartmet-library-macgyver
         - build-smartmet-library-smarttools
         - test-smartmet-library-spine
-        - test-smartmet-library-trajectory
+        - build-smartmet-library-trajectory
     - build-smartmet-plugin-wfs:
        requires:
         - preprep
@@ -1034,13 +1030,6 @@ workflows:
         - test-smartmet-library-newbase
         - test-smartmet-library-regression
         - test-smartmet-timezones
-    - test-smartmet-library-trajectory:
-       requires:
-        - build-smartmet-library-trajectory
-        - test-smartmet-library-gis
-        - test-smartmet-library-locus
-        - test-smartmet-library-macgyver
-        - test-smartmet-library-newbase
     - test-smartmet-library-tron:
        requires:
         - build-smartmet-library-tron
@@ -1125,7 +1114,6 @@ workflows:
         - test-smartmet-engine-geonames
         - test-smartmet-library-macgyver
         - test-smartmet-library-spine
-        - test-smartmet-library-trajectory
         - test-smartmet-server
     - test-smartmet-plugin-wfs:
        requires:
@@ -1262,7 +1250,6 @@ workflows:
         - test-smartmet-library-regression
         - test-smartmet-library-spine
         - test-smartmet-library-textgen
-        - test-smartmet-library-trajectory
         - test-smartmet-library-tron
         - test-smartmet-library-woml
         - test-smartmet-plugin-autocomplete
