@@ -1,4 +1,4 @@
-#timestamp Mon Oct 25 06:11:41 EEST 2021
+#timestamp Tue Oct 26 06:11:45 EEST 2021
 version: 2.1
 pipelines: true
 
@@ -622,6 +622,7 @@ workflows:
         - test-smartmet-library-gis
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
+        - test-smartmet-library-regression
     - build-smartmet-library-gis:
        requires:
         - preprep
