@@ -6,6 +6,10 @@ executors:
  fmi-executor:
   docker:
    - image: fmidev/smartmet-cibase-8:latest
+  resource_class: xlarge
+  environment:
+     RPM_BUILD_NCPUS: 8
+     CXX: clang++
 
 commands:
  build-default:

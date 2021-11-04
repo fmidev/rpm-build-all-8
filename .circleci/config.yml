@@ -1,4 +1,4 @@
-#timestamp Thu Nov  4 05:11:33 EET 2021
+#timestamp Thu Nov  4 13:07:16 EET 2021
 version: 2.1
 pipelines: true
 
@@ -6,6 +6,10 @@ executors:
  fmi-executor:
   docker:
    - image: fmidev/smartmet-cibase-8:latest
+  resource_class: xlarge
+  environment:
+     RPM_BUILD_NCPUS: 8
+     CXX: clang++
 
 commands:
  build-default:
