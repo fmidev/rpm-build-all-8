@@ -137,7 +137,7 @@ jobs:
      - persist_to_workspace:
           root: /dist
           paths:
-            - smartmet-test-data*.rpm
+            - ./project/*.rpm
 
 #end
 #template post

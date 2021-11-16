@@ -1,4 +1,4 @@
-#timestamp Tue Nov 16 14:02:19 EET 2021
+#timestamp Tue Nov 16 14:46:20 EET 2021
 version: 2.1
 pipelines: true
 
@@ -509,7 +509,7 @@ jobs:
      - persist_to_workspace:
           root: /dist
           paths:
-            - smartmet-test-data*.rpm
+            - ./project/*.rpm
 
 #end
 #template post
