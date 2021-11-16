@@ -1,4 +1,4 @@
-#timestamp Tue Nov 16 05:11:39 EET 2021
+#timestamp Tue Nov 16 14:02:19 EET 2021
 version: 2.1
 pipelines: true
 
@@ -20,7 +20,7 @@ commands:
   steps:
    - run:
       name: Disable smartmet packages coming from FMI repo
-      command: sudo dnf config-manager --quiet --save --setopt="smartmet-open.exclude=smartmet-engine-authentication smartmet-engine-contour smartmet-engine-geonames smartmet-engine-gis smartmet-engine-grid smartmet-engine-observation smartmet-engine-querydata smartmet-engine-sputnik smartmet-frontier smartmet-library-calculator smartmet-library-gis smartmet-library-giza smartmet-library-grid-content smartmet-library-grid-files smartmet-library-imagine smartmet-library-imagine2 smartmet-library-locus smartmet-library-macgyver smartmet-library-newbase smartmet-library-regression smartmet-library-smarttools smartmet-library-spine smartmet-library-textgen smartmet-library-trajectory smartmet-library-tron smartmet-library-woml smartmet-plugin-admin smartmet-plugin-autocomplete smartmet-plugin-backend smartmet-plugin-cross_section smartmet-plugin-download smartmet-plugin-frontend smartmet-plugin-grid-admin smartmet-plugin-grid-gui smartmet-plugin-meta smartmet-plugin-textgen smartmet-plugin-timeseries smartmet-plugin-trajectory smartmet-plugin-wfs smartmet-plugin-wms smartmet-qdcontour smartmet-qdcontour2 smartmet-qdtools smartmet-server smartmet-shapetools smartmet-test-db smartmet-timezones smartmet-tools-grid smartmet-utils"
+      command: sudo dnf config-manager --quiet --disable smartmet-open --disable smartmet-open-beta
    - checkout
    - attach_workspace:
       at: /dist
@@ -61,8 +61,8 @@ commands:
   description: Test
   steps:
    - run:
-      name: Lower priority of packages coming from FMI repo
-      command: sudo sed -e 's/gpgcheck=0/gpgcheck=0\npriority=99/' -i /etc/yum.repos.d/smartmet-open.repo
+      name: Disable smartmet packages coming from FMI repo
+      command: sudo dnf config-manager --quiet --disable smartmet-open --disable smartmet-open-beta
    - checkout
    - attach_workspace:
       at: /dist
@@ -502,6 +502,15 @@ jobs:
           make -v >/dev/null 2>&1 || sudo yum install -y make
           sudo yum install -y perl-Data-Dumper || true
           make check
+     - run:
+        name: Download RPMs not built on Circle-CI to local repo
+        command:
+          yumdownloader smartmet-test-data
+     - persist_to_workspace:
+          root: /dist
+          paths:
+            - smartmet-test-data*.rpm
+
 #end
 #template post
 # This job runs after everything is built and tested
