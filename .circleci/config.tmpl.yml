@@ -133,11 +133,11 @@ jobs:
      - run:
         name: Download RPMs not built on Circle-CI to local repo
         command:
-          yumdownloader smartmet-test-data
+          yumdownloader smartmet-test-data && sudo mv *.rpm /dist
      - persist_to_workspace:
           root: /dist
           paths:
-            - ./project/*.rpm
+            - *.rpm
 
 #end
 #template post
