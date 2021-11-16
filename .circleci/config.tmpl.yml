@@ -137,7 +137,7 @@ jobs:
      - persist_to_workspace:
           root: /dist
           paths:
-            - *.rpm
+            - ./*.rpm
 
 #end
 #template post
