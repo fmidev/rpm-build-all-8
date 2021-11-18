@@ -111,7 +111,7 @@ sub scan($)
 			{
 			    $buildreq{"$b"} = 1;
 			}
-			elsif ( require_tests($b) )
+			else
 			{
 			    $testreq{"$b"} = 1;
 			}
@@ -310,7 +310,14 @@ while (<STDIN>)
 			{
 			    foreach my $dep (@$value)
 			    {
-				$c .= ( ' ' x ( $currenttemplateindent + 4 ) ) . "- test-$dep\n";
+				if (require_tests($dep))
+				{
+				    $c .= ( ' ' x ( $currenttemplateindent + 4 ) ) . "- test-$dep\n";
+				}
+				else
+				{
+				    $c .= ( ' ' x ( $currenttemplateindent + 4 ) ) . "- build-$dep\n";
+				}
 			    }
 			}
 			print $c;
