@@ -1,4 +1,4 @@
-#timestamp Thu Nov 18 05:11:38 EET 2021
+#timestamp Thu Nov 18 06:59:20 EET 2021
 version: 2.1
 pipelines: true
 
@@ -932,6 +932,7 @@ workflows:
     - test-smartmet-engine-contour:
        requires:
         - build-smartmet-engine-contour
+        - build-smartmet-engine-querydata
         - test-smartmet-library-gis
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
@@ -1057,6 +1058,8 @@ workflows:
        requires:
         - build-smartmet-plugin-autocomplete
         - test-smartmet-engine-geonames
+        - build-smartmet-engine-querydata
+        - build-smartmet-engine-sputnik
         - test-smartmet-library-macgyver
         - test-smartmet-library-spine
         - test-smartmet-server
@@ -1067,6 +1070,8 @@ workflows:
         - build-smartmet-plugin-cross_section
         - test-smartmet-engine-contour
         - test-smartmet-engine-geonames
+        - build-smartmet-engine-grid
+        - build-smartmet-engine-querydata
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-spine
@@ -1077,6 +1082,8 @@ workflows:
        requires:
         - build-smartmet-plugin-download
         - test-smartmet-engine-geonames
+        - build-smartmet-engine-grid
+        - build-smartmet-engine-querydata
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-spine
@@ -1089,6 +1096,7 @@ workflows:
         - build-smartmet-plugin-meta
         - test-smartmet-engine-geonames
         - test-smartmet-engine-observation
+        - build-smartmet-engine-querydata
         - test-smartmet-library-macgyver
         - test-smartmet-library-spine
         - test-smartmet-server
@@ -1099,6 +1107,7 @@ workflows:
         - build-smartmet-plugin-textgen
         - test-smartmet-engine-geonames
         - test-smartmet-engine-gis
+        - build-smartmet-engine-querydata
         - test-smartmet-library-calculator
         - test-smartmet-library-locus
         - test-smartmet-library-macgyver
@@ -1113,7 +1122,9 @@ workflows:
         - build-smartmet-plugin-timeseries
         - test-smartmet-engine-geonames
         - test-smartmet-engine-gis
+        - build-smartmet-engine-grid
         - test-smartmet-engine-observation
+        - build-smartmet-engine-querydata
         - test-smartmet-library-gis
         - test-smartmet-library-locus
         - test-smartmet-library-macgyver
@@ -1128,8 +1139,12 @@ workflows:
         - test-smartmet-engine-contour
         - test-smartmet-engine-geonames
         - test-smartmet-engine-gis
+        - build-smartmet-engine-grid
         - test-smartmet-engine-observation
+        - build-smartmet-engine-querydata
         - test-smartmet-library-gis
+        - build-smartmet-library-grid-content
+        - build-smartmet-library-grid-files
         - test-smartmet-library-locus
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
@@ -1144,9 +1159,13 @@ workflows:
         - test-smartmet-engine-contour
         - test-smartmet-engine-geonames
         - test-smartmet-engine-gis
+        - build-smartmet-engine-grid
         - test-smartmet-engine-observation
+        - build-smartmet-engine-querydata
         - test-smartmet-library-gis
         - test-smartmet-library-giza
+        - build-smartmet-library-grid-content
+        - build-smartmet-library-grid-files
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-spine
@@ -1174,6 +1193,7 @@ workflows:
         - test-smartmet-library-imagine
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
+        - build-smartmet-library-smarttools
         - test-smartmet-timezones
     - test-smartmet-server:
        requires:
