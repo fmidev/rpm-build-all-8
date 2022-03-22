@@ -1,4 +1,4 @@
-#timestamp Mon Mar 21 05:11:29 EET 2022
+#timestamp Tue Mar 22 05:11:31 EET 2022
 version: 2.1
 pipelines: true
 
@@ -718,7 +718,6 @@ workflows:
         - test-smartmet-library-gis
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
-        - test-smartmet-library-timeseries
         - test-smartmet-utils
     - build-smartmet-library-textgen:
        requires:
@@ -733,6 +732,7 @@ workflows:
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-regression
+        - test-smartmet-library-spine
         - test-smartmet-utils
     - build-smartmet-library-trajectory:
        requires:
@@ -1073,7 +1073,6 @@ workflows:
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-regression
-        - test-smartmet-library-timeseries
         - test-smartmet-timezones
     - test-smartmet-library-textgen:
        requires:
@@ -1090,6 +1089,7 @@ workflows:
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-regression
+        - test-smartmet-library-spine
         - test-smartmet-timezones
         - test-smartmet-utils
     - test-smartmet-library-tron:
@@ -1181,6 +1181,7 @@ workflows:
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-spine
+        - test-smartmet-library-timeseries
         - test-smartmet-server
         - test-smartmet-test-db
         - test-smartmet-utils
