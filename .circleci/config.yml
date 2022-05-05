@@ -1,4 +1,4 @@
-#timestamp Wed May  4 06:11:32 EEST 2022
+#timestamp Thu May  5 06:11:36 EEST 2022
 version: 2.1
 pipelines: true
 
@@ -230,6 +230,11 @@ jobs:
     steps:
      - build-default:
         module: smartmet-library-trajectory
+  build-smartmet-library-trax:
+    executor: fmi-executor
+    steps:
+     - build-default:
+        module: smartmet-library-trax
   build-smartmet-library-tron:
     executor: fmi-executor
     steps:
@@ -429,6 +434,10 @@ jobs:
     executor: fmi-executor
     steps:
      - test-default
+  test-smartmet-library-trax:
+    executor: fmi-executor
+    steps:
+     - test-default
   test-smartmet-library-tron:
     executor: fmi-executor
     steps:
@@ -590,10 +599,8 @@ workflows:
         - preprep
         - test-smartmet-library-gis
         - test-smartmet-library-macgyver
-        - test-smartmet-library-newbase
         - test-smartmet-library-spine
-        - test-smartmet-library-timeseries
-        - test-smartmet-library-tron
+        - test-smartmet-library-trax
     - build-smartmet-engine-geonames:
        requires:
         - preprep
@@ -742,6 +749,10 @@ workflows:
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - build-smartmet-library-smarttools
+    - build-smartmet-library-trax:
+       requires:
+        - preprep
+        - test-smartmet-library-macgyver
     - build-smartmet-library-tron:
        requires:
         - preprep
@@ -887,6 +898,7 @@ workflows:
         - test-smartmet-library-macgyver
         - test-smartmet-library-spine
         - test-smartmet-library-timeseries
+        - test-smartmet-library-trax
     - build-smartmet-plugin-wms:
        requires:
         - preprep
@@ -904,6 +916,7 @@ workflows:
         - test-smartmet-library-macgyver
         - test-smartmet-library-spine
         - test-smartmet-library-timeseries
+        - test-smartmet-library-trax
     - build-smartmet-qdcontour:
        requires:
         - preprep
@@ -974,7 +987,7 @@ workflows:
         - test-smartmet-library-regression
         - test-smartmet-library-spine
         - test-smartmet-library-timeseries
-        - test-smartmet-library-tron
+        - test-smartmet-library-trax
     - test-smartmet-engine-geonames:
        requires:
         - build-smartmet-engine-geonames
@@ -1092,6 +1105,10 @@ workflows:
         - test-smartmet-library-spine
         - test-smartmet-timezones
         - test-smartmet-utils
+    - test-smartmet-library-trax:
+       requires:
+        - build-smartmet-library-trax
+        - test-smartmet-library-macgyver
     - test-smartmet-library-tron:
        requires:
         - build-smartmet-library-tron
@@ -1202,6 +1219,7 @@ workflows:
         - test-smartmet-library-newbase
         - test-smartmet-library-spine
         - test-smartmet-library-timeseries
+        - test-smartmet-library-trax
         - test-smartmet-server
         - test-smartmet-test-db
         - test-smartmet-utils
@@ -1223,6 +1241,7 @@ workflows:
         - test-smartmet-library-newbase
         - test-smartmet-library-spine
         - test-smartmet-library-timeseries
+        - test-smartmet-library-trax
         - test-smartmet-server
         - test-smartmet-test-db
     - test-smartmet-qdcontour:
@@ -1290,6 +1309,7 @@ workflows:
         - build-smartmet-library-textgen
         - build-smartmet-library-timeseries
         - build-smartmet-library-trajectory
+        - build-smartmet-library-trax
         - build-smartmet-library-tron
         - build-smartmet-library-woml
         - build-smartmet-plugin-admin
@@ -1333,6 +1353,7 @@ workflows:
         - test-smartmet-library-spine
         - test-smartmet-library-textgen
         - test-smartmet-library-timeseries
+        - test-smartmet-library-trax
         - test-smartmet-library-tron
         - test-smartmet-library-woml
         - test-smartmet-plugin-autocomplete
