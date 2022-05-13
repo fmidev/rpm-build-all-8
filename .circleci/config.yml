@@ -1,4 +1,4 @@
-#timestamp Thu May 12 06:11:44 EEST 2022
+#timestamp Fri May 13 06:11:35 EEST 2022
 version: 2.1
 pipelines: true
 
@@ -680,6 +680,7 @@ workflows:
         - test-smartmet-library-macgyver
         - test-smartmet-library-newbase
         - test-smartmet-library-spine
+        - test-smartmet-library-trax
         - test-smartmet-library-tron
     - build-smartmet-library-imagine:
        requires:
