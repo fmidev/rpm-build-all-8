@@ -1,4 +1,4 @@
-#timestamp Fri May 20 08:57:52 EEST 2022
+#timestamp Fri May 20 11:26:46 EEST 2022
 version: 2.1
 pipelines: true
 
@@ -607,6 +607,7 @@ workflows:
         - test-smartmet-library-gis
         - test-smartmet-library-locus
         - test-smartmet-library-macgyver
+        - test-smartmet-library-newbase
         - test-smartmet-library-spine
     - build-smartmet-engine-gis:
        requires:
@@ -995,6 +996,7 @@ workflows:
         - test-smartmet-library-gis
         - test-smartmet-library-locus
         - test-smartmet-library-macgyver
+        - test-smartmet-library-newbase
         - test-smartmet-library-regression
         - test-smartmet-library-spine
         - test-smartmet-server
